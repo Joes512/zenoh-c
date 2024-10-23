@@ -1357,14 +1357,6 @@ void z_chunk_alloc_result_drop(struct z_moved_chunk_alloc_result_t *this_);
 #endif
 /**
  * @warning This API has been marked as unstable: it works as advertised, but it may be changed in a future release.
- * @brief Borrows Chunk Alloc Result.
- */
-#if (defined(Z_FEATURE_SHARED_MEMORY) && defined(Z_FEATURE_UNSTABLE_API))
-ZENOHC_API
-const struct z_loaned_chunk_alloc_result_t *z_chunk_alloc_result_loan(const struct z_owned_chunk_alloc_result_t *this_);
-#endif
-/**
- * @warning This API has been marked as unstable: it works as advertised, but it may be changed in a future release.
  * @brief Creates a new Chunk Alloc Result with Error value.
  */
 #if (defined(Z_FEATURE_SHARED_MEMORY) && defined(Z_FEATURE_UNSTABLE_API))
@@ -4149,7 +4141,7 @@ ZENOHC_API void z_task_drop(struct z_moved_task_t *this_);
 ZENOHC_API
 z_result_t z_task_init(struct z_owned_task_t *this_,
                        const struct z_task_attr_t *_attr,
-                       void (*fun)(void *arg),
+                       void *(*fun)(void *arg),
                        void *arg);
 /**
  * Joins the task and releases all allocated resources
